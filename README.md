@@ -1,10 +1,9 @@
-# simple-nodejs-app
+The README file has been changed by alfonso morales
 
-It is just a boiler plate,an introduction to MERN stack development.
+```
+# This is a sample bash script
 
-Steps:
-
-1. Clone the repository using git clone https://github.com/steffyjohn/simple-nodejs-app.git
-2. npm install
-3. Node server.js or nodemon server.js
-
+#!/bin/bash
+echo "Hello world"
+echo "This is my first commit xD"
+```

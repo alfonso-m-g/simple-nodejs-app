@@ -5,7 +5,6 @@ pipeline {
         stage('Fetch code from Github') {
             steps {
                 echo 'Cloning git repository into GCP VM..'
-                sh 'ssh -i /var/jenkins_home/.ssh/id_rsa jenkins@34.125.106.159 "pm2 delete 0"'
                 sh 'ssh -i /var/jenkins_home/.ssh/id_rsa jenkins@34.125.106.159 "rm -r node-app"'
                 sh 'ssh -i /var/jenkins_home/.ssh/id_rsa jenkins@34.125.106.159 "mkdir node-app"'
                 sh 'ssh -i /var/jenkins_home/.ssh/id_rsa jenkins@34.125.106.159 "cd node-app && git clone https://github.com/alfonso-m-g/simple-nodejs-app.git"'

@@ -11,7 +11,7 @@ mongoose.connect(mongodb)
 
 
 const app = express();
-app.get('/',(req,res)=>res.send('Example message'));
+app.get('/',(req,res)=>res.send('Example message xD'));
 
 const port = process.env.PORT || 8080;
 

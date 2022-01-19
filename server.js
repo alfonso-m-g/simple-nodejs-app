@@ -11,8 +11,8 @@ mongoose.connect(mongodb)
 
 
 const app = express();
-app.get('/',(req,res)=>res.send('Hello world Steffy ann john'));
+app.get('/',(req,res)=>res.send('Estoy enamorado de mi novia Faith Meza Coronado, alias ratón. Te amo nena <3'));
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8080;
 
 app.listen(port,()=>console.log("App listening at port:",port))

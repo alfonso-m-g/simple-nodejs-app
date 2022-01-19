@@ -11,7 +11,7 @@ mongoose.connect(mongodb)
 
 
 const app = express();
-app.get('/',(req,res)=>res.send('Te amo Faith Alessandra Meza Coronado <3 eres el amor de mi vida :3'));
+app.get('/',(req,res)=>res.send('Me quiero casar con ratón <3 te amo pimbis'));
 
 const port = process.env.PORT || 8080;
 

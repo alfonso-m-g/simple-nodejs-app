@@ -13,7 +13,7 @@ pipeline {
         stage('Build application') {
             steps {
                 echo 'Building application..'
-                sh 'ssh -i /var/jenkins_home/.ssh/id_rsa jenkins@34.125.106.159 "cd node-app/simple-nodejs-app && git checkout alfonso-morales && npm install"'
+                sh 'ssh -i /var/jenkins_home/.ssh/id_rsa jenkins@34.125.106.159 "cd node-app/simple-nodejs-app && git checkout master && npm install"'
             }
         }
         stage('Deploy to GCP VM') {

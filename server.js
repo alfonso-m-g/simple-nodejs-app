@@ -11,7 +11,7 @@ mongoose.connect(mongodb)
 
 
 const app = express();
-app.get('/',(req,res)=>res.send('Te extraño ratón xd <3'));
+app.get('/',(req,res)=>res.send('Hello World'));
 
 const port = process.env.PORT || 8080;
 

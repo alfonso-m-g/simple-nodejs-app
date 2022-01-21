@@ -13,7 +13,7 @@ pipeline {
         stage('Build application') {
             steps {
                 echo 'Building application..'
-                sh 'ssh pachi@192.168.100.199 "cd node-app/simple-nodejs-app && git checkout master && npm install"'
+                sh 'ssh pachi@192.168.100.199 "cd node-app/simple-nodejs-app && git checkout development && npm install"'
             }
         }
         stage('Deploy to GCP VM') {

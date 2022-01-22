@@ -4,29 +4,52 @@ pipeline {
     stages {
         stage('Fetch code from Github') {
             steps {
-                echo 'Cloning git repository into GCP VM..'
-                sh 'ssh pachi@192.168.100.199 "rm -r node-app"'
-                sh 'ssh pachi@192.168.100.199 "mkdir node-app"'
-                sh 'ssh pachi@192.168.100.199 "cd node-app && git clone https://github.com/alfonso-m-g/simple-nodejs-app.git"'
+                echo 'Cloning git repository into remote server..'
+                withCredentials([string(credentialsId: 'COMMAND', variable: 'command'),
+                                 string(credentialsId: 'SSH_USER', variable: 'USER'),
+                                 string(credentialsId: 'SERVER_IP', variable: 'SERVER_IP')]) 
+                {
+                    sh '${command} "ssh ${USER}@${SERVER_IP} -p 2222 "rm -r simple-nodejs-app""'
+                    sh '${command} "ssh ${USER}@${SERVER_IP} -p 2222 "git clone https://github.com/alfonso-m-g/simple-nodejs-app.git""'
+                }
+                
             }
         }
-        stage('Build application') {
+
+        stage('Build app') {
             steps {
-                echo 'Building application..'
-                sh 'ssh pachi@192.168.100.199 "cd node-app/simple-nodejs-app && git checkout development && npm install"'
+                echo 'Cloning git repository into remote server..'
+                withCredentials([string(credentialsId: 'COMMAND', variable: 'command'),
+                                 string(credentialsId: 'SSH_USER', variable: 'USER'),
+                                 string(credentialsId: 'SERVER_IP', variable: 'SERVER_IP')]) 
+                {
+                    sh '${command} "ssh ${USER}@${SERVER_IP} -p 2222 "./scripts/build-app.sh""'
+                }
+                
             }
         }
-        stage('Deploy to GCP VM') {
+
+        stage('Deploy app') {
             steps {
-                echo 'Deploying....'
-                sh 'ssh pachi@192.168.100.199 "cd node-app/simple-nodejs-app && pm2 --name hello start npm -- start"'
+                echo 'Cloning git repository into remote server..'
+                withCredentials([string(credentialsId: 'COMMAND', variable: 'command'),
+                                 string(credentialsId: 'SSH_USER', variable: 'USER'),
+                                 string(credentialsId: 'SERVER_IP', variable: 'SERVER_IP')]) 
+                {
+                    sh '${command} "ssh ${USER}@${SERVER_IP} -p 2222 "./scripts/deploy-app.sh""'
+                }
+                
             }
         }
-        
+
         stage('Test') {
             steps {
-                echo 'Testing....'
-                sh 'ssh pachi@192.168.100.199 "curl -v http://192.168.100.199:8081"'
+                echo 'Testing..'
+                withCredentials([string(credentialsId: 'LOCAL_IP', variable: 'IP'),
+                                 string(credentialsId: 'SSH_USER', variable: 'USER')]) 
+                {
+                    sh 'ssh ${USER}@${IP} "curl -v http://127.0.0.1:8081"'
+                }
             }
         }
     }

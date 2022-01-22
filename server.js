@@ -11,7 +11,7 @@ mongoose.connect(mongodb)
 
 
 const app = express();
-app.get('/',(req,res)=>res.send('Hello World'));
+app.get('/',(req,res)=>res.send('Triggered with Webhook'));
 
 const port = process.env.PORT || 8080;
 

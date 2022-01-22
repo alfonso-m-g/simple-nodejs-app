@@ -11,7 +11,7 @@ mongoose.connect(mongodb)
 
 
 const app = express();
-app.get('/',(req,res)=>res.send('Hello World'));
+app.get('/',(req,res)=>res.send('Hello from webhooks'));
 
 const port = process.env.PORT || 8081;
 

@@ -48,7 +48,7 @@ pipeline {
                 echo 'Testing..'
                 withCredentials([stringcredentialsId: 'COMMAND', variable: 'command')]) 
                 {
-                    sh 'ssh ${command} "curl -v http://localhost:8081"'
+                    sh '${command} "curl -v http://localhost:8081"'
                 }
             }
         }

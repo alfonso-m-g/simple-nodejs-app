@@ -46,10 +46,9 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                withCredentials([string(credentialsId: 'LOCAL_IP', variable: 'IP'),
-                                 string(credentialsId: 'SSH_USER', variable: 'USER')]) 
+                withCredentials([stringcredentialsId: 'COMMAND', variable: 'command')]) 
                 {
-                    sh 'ssh ${USER}@${IP} "curl -v http://127.0.0.1:8081"'
+                    sh 'ssh ${command} "curl -v http://localhost:8081"'
                 }
             }
         }

@@ -46,7 +46,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                withCredentials([stringcredentialsId: 'COMMAND', variable: 'command')]) 
+                withCredentials([string(credentialsId: 'COMMAND', variable: 'command')]) 
                 {
                     sh '${command} "curl -v http://localhost:8081"'
                 }
